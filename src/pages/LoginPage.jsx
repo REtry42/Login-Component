@@ -2,15 +2,16 @@ import { useRef } from "react";
 import LoginForm from "../components/loginPage/LoginForm";
 
 export default function LoginPage({ setIsConnected }) {
+  // using refs because useState would rerender the component
+  // everytime; since we only need the username and the password
+  // only on submit, we can use a ref instead
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    console.log(usernameRef.current.value, passwordRef.current.value);
 
-    setIsConnected(isValidLogin(usernameRef.current.value,passwordRef.current.value));
+    setIsConnected(isValidLogin(usernameRef.current.value, passwordRef.current.value));
   }
   
   return (
